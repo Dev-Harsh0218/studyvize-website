@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman",
+    Times, serif;
+
+  --color-ink-50: #f6f4fb;
+  --color-ink-100: #ebe6f4;
+  --color-ink-900: #14101f;
+
+  --color-brand-50: #f4f0ff;
+  --color-brand-100: #e5daff;
+  --color-brand-200: #cdb5ff;
+  --color-brand-300: #ac86ff;
+  --color-brand-400: #8a55ff;
+  --color-brand-500: #6f2eff;
+  --color-brand-600: #5a1de0;
+  --color-brand-700: #4816b0;
+  --color-brand-800: #351080;
+  --color-brand-900: #240b57;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #14101f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Animated mesh gradient for hero */
+.mesh-bg {
+  background-color: #0d0820;
+  background-image:
+    radial-gradient(at 12% 20%, rgba(111, 46, 255, 0.55) 0px, transparent 55%),
+    radial-gradient(at 80% 10%, rgba(72, 22, 176, 0.55) 0px, transparent 55%),
+    radial-gradient(at 70% 80%, rgba(172, 134, 255, 0.35) 0px, transparent 50%),
+    radial-gradient(at 20% 90%, rgba(90, 29, 224, 0.45) 0px, transparent 50%);
+  background-size: 200% 200%;
+  animation: meshShift 18s ease-in-out infinite;
+}
+
+@keyframes meshShift {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Grid overlay */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+}
+
+/* Floating shapes */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-24px) translateX(12px) rotate(6deg);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(18px) translateX(-16px) rotate(-8deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 12s ease-in-out infinite;
+}
+
+/* Marquee for logos / trust bar decorative row */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #ac86ff 0%, #ffffff 45%, #cdb5ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Nice focus ring */
+:focus-visible {
+  outline: 2px solid #6f2eff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Selection */
+::selection {
+  background: #6f2eff;
+  color: #fff;
+}
+
+/* Custom scrollbar (webkit) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f6f4fb;
+}
+::-webkit-scrollbar-thumb {
+  background: #cdb5ff;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ac86ff;
+}
