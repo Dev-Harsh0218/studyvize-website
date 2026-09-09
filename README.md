@@ -1,54 +1,60 @@
-<div align="center">
-  
-  ![GitHub repo size](https://img.shields.io/github/repo-size/codewithsadee/eduweb)
-  ![GitHub stars](https://img.shields.io/github/stars/codewithsadee/eduweb?style=social)
-  ![GitHub forks](https://img.shields.io/github/forks/codewithsadee/eduweb?style=social)
-[![Twitter Follow](https://img.shields.io/twitter/follow/codewithsadee_?style=social)](https://twitter.com/intent/follow?screen_name=codewithsadee_)
-  [![YouTube Video Views](https://img.shields.io/youtube/views/x26bQPxcFX4?style=social)](https://youtu.be/x26bQPxcFX4)
+# unithink-website
 
-  <br />
-  <br />
+Public marketing website for **UniThink**, a study-abroad consultancy. Static HTML, CSS, and vanilla JavaScript — no framework, no build step, deploys to any static host.
 
-  <h2 align="center">Unithink - Education Website</h2>
+Part of the [UniThink platform](https://github.com/Dev-Harsh0218/unithink-platform).
 
-  Unithink is a fully responsive education website, <br />Responsive for all devices, build using HTML, CSS, and JavaScript.
+## What it does
 
-  <a href="https://unithink.netlify.app/"><strong>➥ Live Demo</strong></a>
+- Landing page introducing UniThink and the study-abroad service
+- Program / country pages describing available destinations
+- Contact form → posts leads to [`unithink-corp-api`](https://github.com/Dev-Harsh0218/unithink-corp-api) → shows up in [`unithink-corp-web`](https://github.com/Dev-Harsh0218/unithink-corp-web) portal for consultants to follow up
 
-</div>
+## Layout
 
-<br />
-
-### Demo Screeshots
-
-![Unithink Desktop Demo](./readme-images/desktop.png "Desktop Demo")
-
-### Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
-
-### Run Locally
-
-To run **EduWeb** locally, run this command on your git bash:
-
-Linux and macOS:
-
-```bash
-sudo git clone https://github.com/Dev-Harsh0218/UniThink-study-abroad.git
+```
+unithink-website/
+├── index.html          # main landing page
+├── form.html           # lead-capture contact form
+├── style1.css          # site styles (custom, no framework)
+├── assets/             # images, icons, fonts
+├── readme-images/      # screenshots referenced by this README
+├── style-guide.md      # brand colors, type scale, spacing
+└── favicon.svg
 ```
 
-Windows:
+## Local dev
+
+Any static server works. Simplest:
 
 ```bash
-git clone https://github.com/Dev-Harsh0218/UniThink-study-abroad.git
+python3 -m http.server 8080
+# → http://localhost:8080
 ```
 
-### Contact
+Or open `index.html` directly in a browser.
 
-If you want to contact with me you can reach me at [Twitter](https://www.twitter.com/codewithsadee).
+## Deploy
 
-### License
+Static host — Vercel / Netlify / GitHub Pages / any S3 + CloudFront:
 
-This project is **free to use** and does not contains any license.
+```bash
+# Vercel
+vercel --prod
+
+# Netlify
+netlify deploy --prod
+```
+
+## Design choices
+
+- **No framework** — content-heavy, interaction-light; static HTML is the right tool
+- **No build step** — zero-config deploy, no CI pipeline needed
+- **Single stylesheet** — avoids fragmentation; whole site brand-consistent
+- **Form posts to API** (not `mailto:`) — leads go straight into MongoDB via [`unithink-corp-api`](https://github.com/Dev-Harsh0218/unithink-corp-api), never touch consultant's personal inbox
+
+## Related repos
+
+- [`unithink-platform`](https://github.com/Dev-Harsh0218/unithink-platform) — platform meta-repo (architecture)
+- [`unithink-corp-web`](https://github.com/Dev-Harsh0218/unithink-corp-web) — consultant-facing admin portal
+- [`unithink-corp-api`](https://github.com/Dev-Harsh0218/unithink-corp-api) — backend (Node/Express/MongoDB/Nodemailer)
